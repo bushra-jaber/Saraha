@@ -4,11 +4,11 @@ import jwt from 'jsonwebtoken';
 import { sendEmail } from "../../services/sendEmail.js";
 
 
-export const register = async (req, res) => {
+export const register = async (req, res,next) => {
   const { userName, email, password } = req.body;
   const user = await userModel.findOne({ email });
   if (user) {
-    return res.status(409).json({ message: "email alredy exist" })
+     return next (new Error("email alredy exist"));
   }
   const hashPssword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUND));
   const token= await jwt.sign({email},process.env.CONFIRMEMAILTOKEN,{expiresIn:60*60})

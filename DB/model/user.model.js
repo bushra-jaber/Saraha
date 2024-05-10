@@ -1,3 +1,4 @@
+
 import { Schema, model } from "mongoose";
 const userSchema = new Schema({
     userName:{
@@ -7,6 +8,9 @@ const userSchema = new Schema({
     email:{
         type:String,
         required:true,
+    },
+    profilePic:{
+     type:String,
     },
     password:{
         type:String,

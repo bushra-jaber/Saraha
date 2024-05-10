@@ -6,3 +6,8 @@ export const asyncHandler=(fn)=>{
     }
 
 }
+export const globalErrorHandler=(err,req,res,next)=>{
+    if(err){
+        return res.json({message:err.message || "invalid format"});
+    }
+}
